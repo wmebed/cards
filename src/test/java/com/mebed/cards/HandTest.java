@@ -9,6 +9,7 @@ import com.mebed.cards.PokerGame.HandCategory;
 
 public class HandTest {
 
+
 	@Test
     public void testHand() {
 		Deck deck = new Deck();
@@ -42,10 +43,10 @@ public class HandTest {
 		Card card5 = new Card(10, Card.Suite.Diamond);
 		hand.addCard(card5);
 		
-		Assert.assertEquals(HandCategory.OnePair, PokerGame.getCategory(hand));
+		Assert.assertEquals(HandCategory.OnePair, PokerGame.getCategory(hand, true));
 		
 		double score = PokerGame.scoreHand(hand);
-		Assert.assertEquals(1.2, score);
+		Assert.assertEquals(1.02, score);
 	}
 	
 	@Test
@@ -62,7 +63,7 @@ public class HandTest {
 		Card card5 = new Card(1, Card.Suite.Diamond);
 		hand.addCard(card5);
 		
-		Assert.assertEquals(HandCategory.TwoPair, PokerGame.getCategory(hand));
+		Assert.assertEquals(HandCategory.TwoPair, PokerGame.getCategory(hand, true));
 	}
 	
 	@Test
@@ -79,7 +80,7 @@ public class HandTest {
 		Card card5 = new Card(2, Card.Suite.Diamond);
 		hand.addCard(card5);
 		
-		Assert.assertEquals(HandCategory.ThreeOfAKind, PokerGame.getCategory(hand));
+		Assert.assertEquals(HandCategory.ThreeOfAKind, PokerGame.getCategory(hand, true));
 	}
 	
 	@Test
@@ -96,7 +97,7 @@ public class HandTest {
 		Card card5 = new Card(2, Card.Suite.Diamond);
 		hand.addCard(card5);
 		
-		Assert.assertEquals(HandCategory.FullHouse, PokerGame.getCategory(hand));
+		Assert.assertEquals(HandCategory.FullHouse, PokerGame.getCategory(hand, true));
 	}
 	
 	@Test
@@ -113,7 +114,7 @@ public class HandTest {
 		Card card5 = new Card(5, Card.Suite.Diamond);
 		hand.addCard(card5);
 		
-		Assert.assertEquals(HandCategory.Straight, PokerGame.getCategory(hand));
+		Assert.assertEquals(HandCategory.Straight, PokerGame.getCategory(hand, true));
 	}
 	
 	@Test
@@ -130,7 +131,7 @@ public class HandTest {
 		Card card5 = new Card(6, Card.Suite.Club);
 		hand.addCard(card5);
 		
-		Assert.assertEquals(HandCategory.Flush, PokerGame.getCategory(hand));
+		Assert.assertEquals(HandCategory.Flush, PokerGame.getCategory(hand, true));
 	}
 	
 	@Test
@@ -147,7 +148,7 @@ public class HandTest {
 		Card card5 = new Card(5, Card.Suite.Club);
 		hand.addCard(card5);
 		
-		Assert.assertEquals(HandCategory.StraightFlush, PokerGame.getCategory(hand));
+		Assert.assertEquals(HandCategory.StraightFlush, PokerGame.getCategory(hand, true));
 	}
 }
  

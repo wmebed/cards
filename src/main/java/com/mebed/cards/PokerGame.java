@@ -3,6 +3,7 @@ package com.mebed.cards;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collections;
 
 import com.mebed.cards.Card.Suite;
 
@@ -120,6 +121,8 @@ public class PokerGame {
 			score = ((double)getHighCard(hand).value) / 100 + ((double)getHighCard(hand).suite.ordinal()/1000) ;
 		} else if (category.ordinal() == 1) {
 			score =  category.ordinal() + (((double)getPairValue(hand)) / 100);
+		} else if (category.ordinal() == 2) {
+			score =  category.ordinal() + (((double)getTwoPairValue(hand)) / 100);
 		} else if (category.ordinal() == 3) {
 			score =  category.ordinal() + (((double)getThreeOfAKindValue(hand)) / 100);
 		} else {
@@ -130,7 +133,10 @@ public class PokerGame {
 		return score;
 	}
 
-	public static HandCategory getCategory(Hand hand) {
+	public static HandCategory getCategory(Hand hand, boolean needsOrder) {
+		if (needsOrder) {
+			hand.orderHand();
+		}
 		HandCategory category = null;
 		if (hasStraightFlush(hand)) {
 			category = HandCategory.StraightFlush;
@@ -152,6 +158,10 @@ public class PokerGame {
 			category = HandCategory.HighCard;
 		}
 		return category;
+	}
+	
+	public static HandCategory getCategory(Hand hand) {
+		return getCategory(hand, false);
 	}
 
 	private static boolean hasPair(Hand hand) {
@@ -207,6 +217,32 @@ public class PokerGame {
 			oldValue = card.value;
 		}
 		return false;
+	}
+	
+	private static double getTwoPairValue(Hand hand) {
+		int oldValue = 0;
+		boolean onePair = false;
+		int highPair = 0;
+		int lowPair = 0;
+		int[] pairValues = new int[2];
+		for (Card card : hand.cards) {
+			if (card.value == oldValue) {
+				if (onePair) {
+					pairValues[1] = card.value;
+					if (pairValues[0] > pairValues[1]) {
+						return (HandCategory.TwoPair.ordinal() + (pairValues[0]/10) +  (pairValues[1]/100));
+					} else {
+						return (HandCategory.TwoPair.ordinal() + (pairValues[1]/10) +  (pairValues[0]/100));
+					}
+				}
+				else {
+					pairValues[0] = card.value;
+					onePair = true;
+				}
+			}
+			oldValue = card.value;
+		}
+		return 0;
 	}
 	
 	private static boolean hasThreeOfAKind(Hand hand) {
