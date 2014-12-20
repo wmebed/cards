@@ -1,5 +1,9 @@
 package com.mebed.cards;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import com.mebed.cards.Card.Suite;
 
 /**
@@ -8,8 +12,9 @@ import com.mebed.cards.Card.Suite;
  */
 public class PokerGame {
 	
-	public static final int MAX_HAND = 5;
-	private static final int MAX_GAMES = 1;
+	public static final int MAX_HAND = 7;
+	public static final int PLAYER_HAND = 2;
+	private static final int MAX_GAMES = 10;
 	enum HandCategory {
 		HighCard, 
 		OnePair,
@@ -24,7 +29,8 @@ public class PokerGame {
 		
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException 
+	{
 		int score = 0;
 		for (int i=0; i < MAX_GAMES; i++) {
 			score += playHandVsComputer(false);
@@ -33,18 +39,35 @@ public class PokerGame {
 		
 	}
 
-	private static int playHandVsComputer(boolean silent) {
+	private static int playHandVsComputer(boolean silent) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
 		int winner = 0;
 		Deck deck = new Deck();
 		deck.shuffle();
 		
 		Hand computerHand = new Hand();
 		Hand playerHand = new Hand();
+		Hand riverHand = new Hand();
 		
-		for (int i=0; i < MAX_HAND; i++) {
+		for (int i=0; i < PLAYER_HAND; i++) {
 			computerHand.addCard(deck.dealCard());
 			playerHand.addCard(deck.dealCard());
 		}
+		
+		playerHand.showHand();
+		
+		System.out.println("Please Bet.");
+        String response = br.readLine();
+		
+		for (int i=0; i < MAX_HAND - PLAYER_HAND; i++) {
+			Card riverCard = deck.dealCard();
+			computerHand.addCard(riverCard);
+			playerHand.addCard(riverCard);
+		}
+		
+		System.out.println("Please Bet.");
+		response = response = br.readLine();
 		
 		double scoreComputer = scoreHand(computerHand);
 		double scoreYou = scoreHand(playerHand);
@@ -82,6 +105,8 @@ public class PokerGame {
 			winner = -1;
 		} 
 		
+		System.out.println();
+		System.out.println();
 
 		return winner;
 	}
