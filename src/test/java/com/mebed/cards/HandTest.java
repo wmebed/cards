@@ -108,6 +108,10 @@ public class HandTest {
 		hand.addCard(card4);
 		Card card5 = new Card(2, Card.Suite.Diamond);
 		hand.addCard(card5);
+		Card card6 = new Card(8, Card.Suite.Heart);
+		hand.addCard(card6);
+		Card card7 = new Card(3, Card.Suite.Spade);
+		hand.addCard(card7);
 		
 		Assert.assertEquals(HandCategory.FullHouse, PokerGame.getCategory(hand, true));
 	}
@@ -166,8 +170,12 @@ public class HandTest {
 		hand.addCard(card3);
 		Card card4 = new Card(4, Card.Suite.Club);
 		hand.addCard(card4);
-		Card card5 = new Card(5, Card.Suite.Club);
+		Card card5 = new Card(11, Card.Suite.Diamond);
 		hand.addCard(card5);
+		Card card6 = new Card(8, Card.Suite.Heart);
+		hand.addCard(card6);
+		Card card7 = new Card(5, Card.Suite.Club);
+		hand.addCard(card7);
 		
 		Assert.assertEquals(HandCategory.StraightFlush, PokerGame.getCategory(hand, true));
 	}
