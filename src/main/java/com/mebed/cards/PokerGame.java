@@ -15,7 +15,7 @@ public class PokerGame {
 	
 	public static final int MAX_HAND = 7;
 	public static final int PLAYER_HAND = 2;
-	private static final int MAX_GAMES = 10;
+	private static final int MAX_GAMES = 1000;
 	enum HandCategory {
 		HighCard, 
 		OnePair,
@@ -27,7 +27,6 @@ public class PokerGame {
 		FourOfAKind,
 		StraightFlush,
 		RoyalFlush
-		
 	}
 
 	public static void main(String[] args) throws IOException 
@@ -58,17 +57,21 @@ public class PokerGame {
 		
 		playerHand.showHand();
 		
-		System.out.println("Please Bet.");
-        String response = br.readLine();
+//		System.out.println("Please Bet.");
+//        String response = br.readLine();
 		
 		for (int i=0; i < MAX_HAND - PLAYER_HAND; i++) {
 			Card riverCard = deck.dealCard();
 			computerHand.addCard(riverCard);
 			playerHand.addCard(riverCard);
+			riverHand.addCard(riverCard);
 		}
 		
-		System.out.println("Please Bet.");
-		response = response = br.readLine();
+		riverHand.showHand();
+		
+		
+//		System.out.println("Please Bet.");
+//		response = response = br.readLine();
 		
 		double scoreComputer = scoreHand(computerHand);
 		double scoreYou = scoreHand(playerHand);
@@ -333,25 +336,49 @@ public class PokerGame {
 	}
 	
 	private static boolean hasStraight(Hand hand) {
+		hand.orderHand();
 		int oldValue = 0;
+		int straight = 0;
 		for (Card card : hand.cards) {
-			if (oldValue != 0 && card.value != oldValue - 1) {
-				return false;
+			if (oldValue == 0 || card.value == oldValue - 1) {
+				straight++;
+			} else {
+				straight = 0;
 			}
 			oldValue = card.value;
 		}
-		return true;
+			if (straight >= 4) {
+				return true;
+			} else {
+				return false;
+			}
+			
 	}
 	
 	private static boolean hasFlush(Hand hand) {
-		Suite oldSuite = null;
+		int numberSpades = 0;
+		int numberDiamonds = 0;
+		int numberHearts = 0;
+		int numberClubs = 0;
 		for (Card card : hand.cards) {
-			if (oldSuite != null && card.suite != oldSuite) {
-				return false;
+			if (card.getSuite() == Card.Suite.Spade) {
+				numberSpades++;
 			}
-			oldSuite = card.suite;
+			if (card.getSuite() == Card.Suite.Diamond) {
+				numberDiamonds++;
+			}
+			if (card.getSuite() == Card.Suite.Heart) {
+				numberHearts++;
+			}
+			if (card.getSuite() == Card.Suite.Club) {
+				numberClubs++;
+			}			
 		}
-		return true;
+		if (numberSpades >= 5 || numberDiamonds >= 5 || numberHearts >= 5 || numberClubs >= 5) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	private static boolean hasStraightFlush(Hand hand) {
