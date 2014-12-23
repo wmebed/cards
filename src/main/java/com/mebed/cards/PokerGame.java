@@ -15,7 +15,7 @@ public class PokerGame {
 	
 	public static final int MAX_HAND = 7;
 	public static final int PLAYER_HAND = 2;
-	private static final int MAX_GAMES = 1000;
+	private static final int MAX_GAMES = 10;
 	enum HandCategory {
 		HighCard, 
 		OnePair,
@@ -57,21 +57,46 @@ public class PokerGame {
 		
 		playerHand.showHand();
 		
-//		System.out.println("Please Bet.");
-//        String response = br.readLine();
+		System.out.println("Please Bet.");
+        String response = br.readLine();
 		
-		for (int i=0; i < MAX_HAND - PLAYER_HAND; i++) {
+		for (int i=0; i < 3; i++) {
 			Card riverCard = deck.dealCard();
 			computerHand.addCard(riverCard);
 			playerHand.addCard(riverCard);
 			riverHand.addCard(riverCard);
 		}
 		
+		System.out.println();
+		System.out.println("Flop:");
 		riverHand.showHand();
+		System.out.println("Please Bet.");
+        response = br.readLine();
 		
+        // turn
+		Card riverCard = deck.dealCard();
+		computerHand.addCard(riverCard);
+		playerHand.addCard(riverCard);
+		riverHand.addCard(riverCard);
 		
-//		System.out.println("Please Bet.");
-//		response = response = br.readLine();
+		System.out.println();
+		System.out.println("Turn hand:");
+		riverHand.showHand();
+		System.out.println("Please Bet.");
+        response = br.readLine();
+        
+        // river
+		riverCard = deck.dealCard();
+		computerHand.addCard(riverCard);
+		playerHand.addCard(riverCard);
+		riverHand.addCard(riverCard);
+		
+		System.out.println();
+		System.out.println("River hand:");
+		riverHand.showHand();
+		System.out.println("Please Bet.");
+        response = br.readLine();
+
 		
 		double scoreComputer = scoreHand(computerHand);
 		double scoreYou = scoreHand(playerHand);
