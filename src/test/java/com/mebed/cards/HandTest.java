@@ -32,19 +32,19 @@ public class HandTest {
 	@Test
 	public void testPair() {
 		Hand hand = new Hand();
-		Card card1 = new Card(1, Card.Suite.Club);
+		Card card1 = new Card(1, AbstractCard.Suite.Club);
 		hand.addCard(card1);
-		Card card2 = new Card(2, Card.Suite.Club);
+		Card card2 = new Card(2, AbstractCard.Suite.Club);
 		hand.addCard(card2);
-		Card card3 = new Card(2, Card.Suite.Spade);
+		Card card3 = new Card(2, AbstractCard.Suite.Spade);
 		hand.addCard(card3);
-		Card card4 = new Card(13, Card.Suite.Heart);
+		Card card4 = new Card(13, AbstractCard.Suite.Heart);
 		hand.addCard(card4);
-		Card card5 = new Card(10, Card.Suite.Diamond);
+		Card card5 = new Card(10, AbstractCard.Suite.Diamond);
 		hand.addCard(card5);
-		Card card6 = new Card(8, Card.Suite.Heart);
+		Card card6 = new Card(8, AbstractCard.Suite.Heart);
 		hand.addCard(card6);
-		Card card7 = new Card(11, Card.Suite.Spade);
+		Card card7 = new Card(11, AbstractCard.Suite.Spade);
 		hand.addCard(card7);
 		
 		Assert.assertEquals(HandCategory.OnePair, PokerGame.getCategory(hand, true));
@@ -56,19 +56,19 @@ public class HandTest {
 	@Test
 	public void testTwoPair() {
 		Hand hand = new Hand();
-		Card card1 = new Card(1, Card.Suite.Club);
+		Card card1 = new Card(1, AbstractCard.Suite.Club);
 		hand.addCard(card1);
-		Card card2 = new Card(2, Card.Suite.Club);
+		Card card2 = new Card(2, AbstractCard.Suite.Club);
 		hand.addCard(card2);
-		Card card3 = new Card(2, Card.Suite.Spade);
+		Card card3 = new Card(2, AbstractCard.Suite.Spade);
 		hand.addCard(card3);
-		Card card4 = new Card(13, Card.Suite.Heart);
+		Card card4 = new Card(13, AbstractCard.Suite.Heart);
 		hand.addCard(card4);
-		Card card5 = new Card(1, Card.Suite.Diamond);
+		Card card5 = new Card(1, AbstractCard.Suite.Diamond);
 		hand.addCard(card5);
-		Card card6 = new Card(8, Card.Suite.Heart);
+		Card card6 = new Card(8, AbstractCard.Suite.Heart);
 		hand.addCard(card6);
-		Card card7 = new Card(11, Card.Suite.Spade);
+		Card card7 = new Card(11, AbstractCard.Suite.Spade);
 		hand.addCard(card7);
 		
 		Assert.assertEquals(HandCategory.TwoPair, PokerGame.getCategory(hand, true));
@@ -77,19 +77,19 @@ public class HandTest {
 	@Test
 	public void testThreeOfAKind() {
 		Hand hand = new Hand();
-		Card card1 = new Card(1, Card.Suite.Club);
+		Card card1 = new Card(1, AbstractCard.Suite.Club);
 		hand.addCard(card1);
-		Card card2 = new Card(2, Card.Suite.Club);
+		Card card2 = new Card(2, AbstractCard.Suite.Club);
 		hand.addCard(card2);
-		Card card3 = new Card(2, Card.Suite.Spade);
+		Card card3 = new Card(2, AbstractCard.Suite.Spade);
 		hand.addCard(card3);
-		Card card4 = new Card(13, Card.Suite.Heart);
+		Card card4 = new Card(13, AbstractCard.Suite.Heart);
 		hand.addCard(card4);
-		Card card5 = new Card(2, Card.Suite.Diamond);
+		Card card5 = new Card(2, AbstractCard.Suite.Diamond);
 		hand.addCard(card5);
-		Card card6 = new Card(8, Card.Suite.Heart);
+		Card card6 = new Card(8, AbstractCard.Suite.Heart);
 		hand.addCard(card6);
-		Card card7 = new Card(11, Card.Suite.Spade);
+		Card card7 = new Card(11, AbstractCard.Suite.Spade);
 		hand.addCard(card7);
 		
 		Assert.assertEquals(HandCategory.ThreeOfAKind, PokerGame.getCategory(hand, true));
@@ -98,19 +98,19 @@ public class HandTest {
 	@Test
 	public void testFullHouse() {
 		Hand hand = new Hand();
-		Card card1 = new Card(1, Card.Suite.Club);
+		Card card1 = new Card(1, AbstractCard.Suite.Club);
 		hand.addCard(card1);
-		Card card2 = new Card(2, Card.Suite.Club);
+		Card card2 = new Card(2, AbstractCard.Suite.Club);
 		hand.addCard(card2);
-		Card card3 = new Card(2, Card.Suite.Spade);
+		Card card3 = new Card(2, AbstractCard.Suite.Spade);
 		hand.addCard(card3);
-		Card card4 = new Card(1, Card.Suite.Heart);
+		Card card4 = new Card(1, AbstractCard.Suite.Heart);
 		hand.addCard(card4);
-		Card card5 = new Card(2, Card.Suite.Diamond);
+		Card card5 = new Card(2, AbstractCard.Suite.Diamond);
 		hand.addCard(card5);
-		Card card6 = new Card(8, Card.Suite.Heart);
+		Card card6 = new Card(8, AbstractCard.Suite.Heart);
 		hand.addCard(card6);
-		Card card7 = new Card(3, Card.Suite.Spade);
+		Card card7 = new Card(3, AbstractCard.Suite.Spade);
 		hand.addCard(card7);
 		
 		Assert.assertEquals(HandCategory.FullHouse, PokerGame.getCategory(hand, true));
@@ -119,19 +119,19 @@ public class HandTest {
 	@Test
 	public void testStraight() {
 		Hand hand = new Hand();
-		Card card1 = new Card(8, Card.Suite.Heart);
+		Card card1 = new Card(8, AbstractCard.Suite.Heart);
 		hand.addCard(card1);
-		Card card2 = new Card(1, Card.Suite.Club);
+		Card card2 = new Card(1, AbstractCard.Suite.Club);
 		hand.addCard(card2);
-		Card card3 = new Card(2, Card.Suite.Club);
+		Card card3 = new Card(2, AbstractCard.Suite.Club);
 		hand.addCard(card3);
-		Card card4 = new Card(3, Card.Suite.Spade);
+		Card card4 = new Card(3, AbstractCard.Suite.Spade);
 		hand.addCard(card4);
-		Card card5 = new Card(4, Card.Suite.Heart);
+		Card card5 = new Card(4, AbstractCard.Suite.Heart);
 		hand.addCard(card5);
-		Card card6 = new Card(5, Card.Suite.Diamond);
+		Card card6 = new Card(5, AbstractCard.Suite.Diamond);
 		hand.addCard(card6);
-		Card card7 = new Card(9, Card.Suite.Heart);
+		Card card7 = new Card(9, AbstractCard.Suite.Heart);
 		hand.addCard(card7);
 
 		
@@ -141,19 +141,19 @@ public class HandTest {
 	@Test
 	public void testFlush() {
 		Hand hand = new Hand();
-		Card card1 = new Card(1, Card.Suite.Club);
+		Card card1 = new Card(1, AbstractCard.Suite.Club);
 		hand.addCard(card1);
-		Card card2 = new Card(2, Card.Suite.Club);
+		Card card2 = new Card(2, AbstractCard.Suite.Club);
 		hand.addCard(card2);
-		Card card3 = new Card(3, Card.Suite.Club);
+		Card card3 = new Card(3, AbstractCard.Suite.Club);
 		hand.addCard(card3);
-		Card card4 = new Card(4, Card.Suite.Club);
+		Card card4 = new Card(4, AbstractCard.Suite.Club);
 		hand.addCard(card4);
-		Card card5 = new Card(6, Card.Suite.Club);
+		Card card5 = new Card(6, AbstractCard.Suite.Club);
 		hand.addCard(card5);
-		Card card6 = new Card(8, Card.Suite.Heart);
+		Card card6 = new Card(8, AbstractCard.Suite.Heart);
 		hand.addCard(card6);
-		Card card7 = new Card(11, Card.Suite.Spade);
+		Card card7 = new Card(11, AbstractCard.Suite.Spade);
 		hand.addCard(card7);
 		
 		Assert.assertEquals(HandCategory.Flush, PokerGame.getCategory(hand, true));
@@ -162,19 +162,19 @@ public class HandTest {
 	@Test
 	public void testStraightFlush() {
 		Hand hand = new Hand();
-		Card card1 = new Card(1, Card.Suite.Club);
+		Card card1 = new Card(1, AbstractCard.Suite.Club);
 		hand.addCard(card1);
-		Card card2 = new Card(2, Card.Suite.Club);
+		Card card2 = new Card(2, AbstractCard.Suite.Club);
 		hand.addCard(card2);
-		Card card3 = new Card(3, Card.Suite.Club);
+		Card card3 = new Card(3, AbstractCard.Suite.Club);
 		hand.addCard(card3);
-		Card card4 = new Card(4, Card.Suite.Club);
+		Card card4 = new Card(4, AbstractCard.Suite.Club);
 		hand.addCard(card4);
-		Card card5 = new Card(11, Card.Suite.Diamond);
+		Card card5 = new Card(11, AbstractCard.Suite.Diamond);
 		hand.addCard(card5);
-		Card card6 = new Card(8, Card.Suite.Heart);
+		Card card6 = new Card(8, AbstractCard.Suite.Heart);
 		hand.addCard(card6);
-		Card card7 = new Card(5, Card.Suite.Club);
+		Card card7 = new Card(5, AbstractCard.Suite.Club);
 		hand.addCard(card7);
 		
 		Assert.assertEquals(HandCategory.StraightFlush, PokerGame.getCategory(hand, true));

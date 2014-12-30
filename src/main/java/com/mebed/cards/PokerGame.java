@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
 
-import com.mebed.cards.Card.Suite;
+import com.mebed.cards.AbstractCard.Suite;
 
 /**
  * @author wmebed
@@ -170,7 +170,7 @@ public class PokerGame {
 	private static boolean hasPair(Hand hand) {
 		int oldValue = 0;
 		boolean hasPair = false;
-		for (Card card : hand.cards) {
+		for (AbstractCard card : hand.cards) {
 			if (card.value == oldValue) {
 				hasPair = true;
 			}
@@ -190,7 +190,7 @@ public class PokerGame {
 		int oldValue = 0;
 		boolean hasPair = false;
 		int pairValue = 0;
-		for (Card card : hand.cards) {
+		for (AbstractCard card : hand.cards) {
 			if (card.value == oldValue) {
 				hasPair = true;
 				pairValue = card.value;
@@ -210,7 +210,7 @@ public class PokerGame {
 	private static boolean hasTwoPair(Hand hand) {
 		int oldValue = 0;
 		boolean onePair = false;
-		for (Card card : hand.cards) {
+		for (AbstractCard card : hand.cards) {
 			if (card.value == oldValue) {
 				if (onePair)
 					return true;
@@ -228,7 +228,7 @@ public class PokerGame {
 		int highPair = 0;
 		int lowPair = 0;
 		int[] pairValues = new int[2];
-		for (Card card : hand.cards) {
+		for (AbstractCard card : hand.cards) {
 			if (card.value == oldValue) {
 				if (onePair) {
 					pairValues[1] = card.value;
@@ -252,7 +252,7 @@ public class PokerGame {
 		int oldValue = 0;
 		boolean onePair = false;
 		int pairValue = 0;
-		for (Card card : hand.cards) {
+		for (AbstractCard card : hand.cards) {
 			if (card.value == pairValue)
 				return true;
 			else if (card.value == oldValue) {
@@ -268,7 +268,7 @@ public class PokerGame {
 		int oldValue = 0;
 		boolean onePair = false;
 		int pairValue = 0;
-		for (Card card : hand.cards) {
+		for (AbstractCard card : hand.cards) {
 			if (card.value == pairValue)
 				return card.value;
 			else if (card.value == oldValue) {
@@ -285,7 +285,7 @@ public class PokerGame {
 		boolean onePair = false;
 		boolean threeOfAKind = false;
 		int pairValue = 0;
-		for (Card card : hand.cards) {
+		for (AbstractCard card : hand.cards) {
 			if (card.value == pairValue && threeOfAKind == true)
 				return true;
 			else if (card.value == pairValue && threeOfAKind == false)
@@ -304,7 +304,7 @@ public class PokerGame {
 		boolean onePair = false;
 		boolean threeOfAKind = false;
 		int pairValue = 0;
-		for (Card card : hand.cards) {
+		for (AbstractCard card : hand.cards) {
 			if (card.value == pairValue && threeOfAKind == true)
 				return card.value;
 			else if (card.value == pairValue && threeOfAKind == false)
@@ -339,7 +339,7 @@ public class PokerGame {
 		hand.orderHand();
 		int oldValue = 0;
 		int straight = 0;
-		for (Card card : hand.cards) {
+		for (AbstractCard card : hand.cards) {
 			if (oldValue == 0 || card.value == oldValue - 1) {
 				straight++;
 			} else {
@@ -360,17 +360,17 @@ public class PokerGame {
 		int numberDiamonds = 0;
 		int numberHearts = 0;
 		int numberClubs = 0;
-		for (Card card : hand.cards) {
-			if (card.getSuite() == Card.Suite.Spade) {
+		for (AbstractCard card : hand.cards) {
+			if (card.getSuite() == AbstractCard.Suite.Spade) {
 				numberSpades++;
 			}
-			if (card.getSuite() == Card.Suite.Diamond) {
+			if (card.getSuite() == AbstractCard.Suite.Diamond) {
 				numberDiamonds++;
 			}
-			if (card.getSuite() == Card.Suite.Heart) {
+			if (card.getSuite() == AbstractCard.Suite.Heart) {
 				numberHearts++;
 			}
-			if (card.getSuite() == Card.Suite.Club) {
+			if (card.getSuite() == AbstractCard.Suite.Club) {
 				numberClubs++;
 			}			
 		}
@@ -388,7 +388,7 @@ public class PokerGame {
 		return false;
 	}
 	
-	private static Card getHighCard(Hand hand) {
+	private static AbstractCard getHighCard(Hand hand) {
 		return hand.cards.get(0);
 		
 	}

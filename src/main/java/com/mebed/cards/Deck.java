@@ -13,7 +13,7 @@ public class Deck {
 	public Deck() {
 		for (int i = 2; i <= MAX_CARDS; i++) {
 			for (int j = 0; j < MAX_SUITES; j++) {
-				cards.add(new Card(i, Card.Suite.getSuiteByOrder(j)));
+				cards.add(new Card(i, AbstractCard.Suite.getSuiteByOrder(j)));
 			}
 		}
 	}

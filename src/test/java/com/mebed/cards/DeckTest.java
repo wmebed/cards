@@ -11,7 +11,7 @@ public class DeckTest {
     	Deck deck = new Deck();
 //    	deck.shuffle();
     	do {
-    		Card card = deck.dealCard();
+    		AbstractCard card = deck.dealCard();
     		System.out.println(card);
     	} while (!deck.isEmpty());
     }

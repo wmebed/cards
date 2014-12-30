@@ -11,13 +11,13 @@ public class Hand {
 		cards.add(card);
 	}
 	
-	public Card removeCard(Card card) {
+	public AbstractCard removeCard(AbstractCard card) {
 		cards.remove(card);
 		return card;
 	}
 	
 	public void showHand() {
-		for (Card card : cards) {
+		for (AbstractCard card : cards) {
 			System.out.println(card);
 		}
 	}
@@ -26,6 +26,11 @@ public class Hand {
 		Collections.sort(this.cards);
 	}
 	
+	
+	public List<Card> getCards() {
+		return cards;
+	}
+
 	public static Hand orderHand(Hand hand) {
 		Hand newHand = null;
 		try {
