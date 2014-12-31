@@ -1,11 +1,12 @@
 package com.mebed.cards;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Deck {
+public class Deck implements Serializable {
 	private static final int MAX_CARDS = 14;
 	private static final int MAX_SUITES = 4;
 	
@@ -13,7 +14,7 @@ public class Deck {
 	public Deck() {
 		for (int i = 2; i <= MAX_CARDS; i++) {
 			for (int j = 0; j < MAX_SUITES; j++) {
-				cards.add(new Card(i, AbstractCard.Suite.getSuiteByOrder(j)));
+				cards.add(new Card(i, AbstractCard.Suit.getSuiteByOrder(j)));
 			}
 		}
 	}

@@ -1,14 +1,16 @@
 package com.mebed.cards;
 
-public abstract class AbstractCard {
+import java.io.Serializable;
 
-	protected enum Suite {
+public abstract class AbstractCard implements Serializable{
+
+	public enum Suit {
 			Club,
 			Diamond,
 			Heart,
 			Spade;
 			
-			public static Suite getSuiteByOrder(int order) {
+			public static Suit getSuiteByOrder(int order) {
 				switch (order) {
 				case 3: 
 					return Spade;
@@ -30,7 +32,7 @@ public abstract class AbstractCard {
 	public static int KING = 13;
 	public static int ACE_LOW = 1;
 	public static int ACE_HIGH = 14;
-	protected Suite suite;
+	protected Suit suit;
 	protected int value;
 
 	public AbstractCard() {
@@ -59,12 +61,12 @@ public abstract class AbstractCard {
 		return true;
 	}
 
-	public Suite getSuite() {
-		return suite;
+	public Suit getSuit() {
+		return suit;
 	}
 
-	public void setSuit(Suite suite) {
-		this.suite = suite;
+	public void setSuit(Suit suit) {
+		this.suit = suit;
 	}
 
 	public int getValue() {
@@ -87,9 +89,9 @@ public abstract class AbstractCard {
 	    } else if (this.getValue() < card.getValue()) {
 	    	return AFTER;
 	    } else {
-	    	if (this.getSuite().ordinal() > card.getSuite().ordinal()) {
+	    	if (this.getSuit().ordinal() > card.getSuit().ordinal()) {
 	    		return BEFORE;
-	    	} else if (this.getSuite().ordinal() < card.getSuite().ordinal()) {
+	    	} else if (this.getSuit().ordinal() < card.getSuit().ordinal()) {
 	    		return AFTER;
 	    	} else {
 	    	return EQUAL;
@@ -128,7 +130,7 @@ public abstract class AbstractCard {
 				displayValue = "Ace";
 				break;
 		}
-		return displayValue + "-" + this.getSuite() + "s";
+		return displayValue + "-" + this.getSuit() + "s";
 		
 	}
 	

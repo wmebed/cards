@@ -8,9 +8,9 @@ public class CardTest {
 
 	@Test
     public void testCard() {
-    	AbstractCard card = new Card(1, AbstractCard.Suite.Club);
+    	AbstractCard card = new Card(1, AbstractCard.Suit.Club);
     	System.out.println(card);
-    	card = new Card(AbstractCard.KING, AbstractCard.Suite.Heart);
+    	card = new Card(AbstractCard.KING, AbstractCard.Suit.Heart);
     	System.out.println(card);
     }
 }

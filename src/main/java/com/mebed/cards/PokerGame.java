@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
 
-import com.mebed.cards.AbstractCard.Suite;
+import com.mebed.cards.AbstractCard.Suit;
 
 /**
  * @author wmebed
@@ -146,7 +146,7 @@ public class PokerGame {
 		HandCategory category = getCategory(hand);
 		
 		if (category == HandCategory.HighCard) {
-			score = ((double)getHighCard(hand).value) / 100 + ((double)getHighCard(hand).suite.ordinal()/1000) ;
+			score = ((double)getHighCard(hand).value) / 100 + ((double)getHighCard(hand).suit.ordinal()/1000) ;
 		} else if (category.ordinal() == 1) {
 			score =  category.ordinal() + (((double)getPairValue(hand)) / 100);
 		} else if (category.ordinal() == 2) {
@@ -386,16 +386,16 @@ public class PokerGame {
 		int numberHearts = 0;
 		int numberClubs = 0;
 		for (AbstractCard card : hand.cards) {
-			if (card.getSuite() == AbstractCard.Suite.Spade) {
+			if (card.getSuit() == AbstractCard.Suit.Spade) {
 				numberSpades++;
 			}
-			if (card.getSuite() == AbstractCard.Suite.Diamond) {
+			if (card.getSuit() == AbstractCard.Suit.Diamond) {
 				numberDiamonds++;
 			}
-			if (card.getSuite() == AbstractCard.Suite.Heart) {
+			if (card.getSuit() == AbstractCard.Suit.Heart) {
 				numberHearts++;
 			}
-			if (card.getSuite() == AbstractCard.Suite.Club) {
+			if (card.getSuit() == AbstractCard.Suit.Club) {
 				numberClubs++;
 			}			
 		}

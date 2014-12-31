@@ -1,10 +1,11 @@
 package com.mebed.cards;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Hand {
+public class Hand implements Serializable {
 	List<Card> cards = new ArrayList<Card>();
 	
 	public void addCard(Card card) {
