@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
 import com.mebed.cards.AbstractCard.Suit;
 
@@ -148,13 +150,17 @@ public class PokerGame {
 		if (category == HandCategory.HighCard) {
 			score = ((double)getHighCard(hand).value) / 100 + ((double)getHighCard(hand).suit.ordinal()/1000) ;
 		} else if (category.ordinal() == 1) {
-			score =  category.ordinal() + (((double)getPairValue(hand)) / 100);
+			List<Card> nonPairedHighCards = getNonPairedCards(hand);
+			score =  category.ordinal() + (((double)getPairValue(hand)) / 100 +  
+					((double) nonPairedHighCards.get(0).getValue()) / 1000 + ((double) nonPairedHighCards.get(1).getValue())  / 10000 + ((double) nonPairedHighCards.get(2).getValue()) /100000);
 		} else if (category.ordinal() == 2) {
-			score =  category.ordinal() + (((double)getTwoPairValue(hand)) / 100);
+			List<Card> nonPairedHighCards = getNonPairedCards(hand);
+			score =  category.ordinal() + (((double)getTwoPairValue(hand)) / 100 + ((double) nonPairedHighCards.get(0).getValue()) / 1000);
 		} else if (category.ordinal() == 3) {
-			score =  category.ordinal() + (((double)getThreeOfAKindValue(hand)) / 100);
+			List<Card> nonPairedHighCards = getNonPairedCards(hand);
+			score =  category.ordinal() + (((double)getThreeOfAKindValue(hand)) / 100 + ((double) nonPairedHighCards.get(0).getValue()) / 1000 + ((double) nonPairedHighCards.get(1).getValue()) / 10000);
 		} else {
-			score = category.ordinal();
+			score = category.ordinal() + ((double)getHighCard(hand).value) / 100;
 		}
 
 		
@@ -232,6 +238,31 @@ public class PokerGame {
 		return 0;
 	}
 	
+	public static List<Card> getNonPairedCards(Hand hand) {
+		Card oldCard = null;
+		boolean hasPair = false;
+		HashSet<Card> paired = new HashSet<Card>();
+		for (Card card : hand.cards) {
+			if (oldCard != null && card.value == oldCard.value) {
+				hasPair = true;
+				paired.add(card);
+				paired.add(oldCard);
+			}
+			oldCard = card;
+		}
+		Hand nonPairedHand = new Hand();
+		if (hasPair) {
+			for (Card card : hand.cards) {
+				if (!paired.contains(card)) {
+					nonPairedHand.addCard(card);
+				}
+			}
+			return nonPairedHand.getCards();
+		}
+		return null;
+	}
+	
+	
 	private static boolean hasTwoPair(Hand hand) {
 		int oldValue = 0;
 		boolean onePair = false;
@@ -258,9 +289,9 @@ public class PokerGame {
 				if (onePair) {
 					pairValues[1] = card.value;
 					if (pairValues[0] > pairValues[1]) {
-						return (HandCategory.TwoPair.ordinal() + (pairValues[0]/10) +  (pairValues[1]/100));
+						return (HandCategory.TwoPair.ordinal() + (pairValues[0]/100) +  (pairValues[1]/1000));
 					} else {
-						return (HandCategory.TwoPair.ordinal() + (pairValues[1]/10) +  (pairValues[0]/100));
+						return (HandCategory.TwoPair.ordinal() + (pairValues[1]/100) +  (pairValues[0]/1000));
 					}
 				}
 				else {

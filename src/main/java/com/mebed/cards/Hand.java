@@ -42,5 +42,13 @@ public class Hand implements Serializable {
 		Collections.sort(newHand.cards);
 		return newHand;
 	}
+	
+	public static Hand cloneHand(Hand hand) {
+		Hand cloneHand = new Hand();
+		for (Card card: hand.getCards()) {
+    		cloneHand.addCard(card);
+    	} 
+		return cloneHand;
+	}
 
 }

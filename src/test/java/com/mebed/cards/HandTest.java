@@ -1,6 +1,9 @@
 package com.mebed.cards;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import junit.framework.Assert;
 
 import org.junit.Test;
@@ -32,7 +35,7 @@ public class HandTest {
 	@Test
 	public void testPair() {
 		Hand hand = new Hand();
-		Card card1 = new Card(1, AbstractCard.Suit.Club);
+		Card card1 = new Card(14, AbstractCard.Suit.Club);
 		hand.addCard(card1);
 		Card card2 = new Card(2, AbstractCard.Suit.Club);
 		hand.addCard(card2);
@@ -50,7 +53,11 @@ public class HandTest {
 		Assert.assertEquals(HandCategory.OnePair, PokerGame.getCategory(hand, true));
 		
 		double score = PokerGame.scoreHand(hand);
-		Assert.assertEquals(1.02, score);
+		Assert.assertEquals(1.03541, score);
+
+		hand.orderHand();
+		List<Card> nonPairedCards = PokerGame.getNonPairedCards(hand);
+		Assert.assertEquals(14, nonPairedCards.get(0).getValue());
 	}
 	
 	@Test
