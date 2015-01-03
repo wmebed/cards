@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+import com.mebed.betting.HandCategory;
 import com.mebed.cards.AbstractCard.Suit;
 
 /**
@@ -18,18 +19,6 @@ public class PokerGame {
 	public static final int MAX_HAND = 7;
 	public static final int PLAYER_HAND = 2;
 	private static final int MAX_GAMES = 10;
-	enum HandCategory {
-		HighCard, 
-		OnePair,
-		TwoPair,
-		ThreeOfAKind,
-		Straight,
-		FullHouse,
-		Flush,
-		FourOfAKind,
-		StraightFlush,
-		RoyalFlush
-	}
 
 	public static void main(String[] args) throws IOException 
 	{

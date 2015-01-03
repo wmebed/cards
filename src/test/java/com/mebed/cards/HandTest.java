@@ -8,7 +8,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.mebed.cards.PokerGame.HandCategory;
+import com.mebed.betting.HandCategory;
 
 public class HandTest {
 
