@@ -11,7 +11,7 @@ public class BettingStrategy {
 	public static Strategy getStrategy(Hand hand, Account account, Account pot, double opponentBet) {
 		Strategy strategy = new Strategy();
 		HandCategory category = PokerGame.getCategory(hand);
-		if (opponentBet > 10) {
+		if (opponentBet > 9) {
 			long seed = System.nanoTime();
 			if (new Random(seed).nextInt() % 2 == 0) {
 				strategy.setHandStatus(HandStatus.fold);
