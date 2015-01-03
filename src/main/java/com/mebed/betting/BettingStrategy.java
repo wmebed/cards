@@ -10,9 +10,9 @@ public class BettingStrategy {
 
 	public static Strategy getStrategy(Hand hand, Account account, Account pot, double opponentBet) {
 		Strategy strategy = new Strategy();
+		long seed = System.nanoTime();
 		HandCategory category = PokerGame.getCategory(hand);
 		if (opponentBet > 9) {
-			long seed = System.nanoTime();
 			if (new Random(seed).nextInt() % 2 == 0) {
 				strategy.setHandStatus(HandStatus.fold);
 			} else {
@@ -25,7 +25,11 @@ public class BettingStrategy {
 			} else if (hand.getCards().size() == 2) {
 				strategy.setHandStatus(HandStatus.call);
 			} else if (hand.getCards().size()  > 6) {
-				strategy.setHandStatus(HandStatus.fold);
+				if (new Random(seed).nextInt() % 2 == 0) {
+					strategy.setHandStatus(HandStatus.fold);
+				} else {
+					strategy.setHandStatus(HandStatus.call);
+				}
 			} else {
 				strategy.setHandStatus(HandStatus.call);
 			}
