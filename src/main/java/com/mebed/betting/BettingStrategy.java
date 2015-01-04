@@ -18,9 +18,21 @@ public class BettingStrategy {
 			} else {
 				strategy.setHandStatus(HandStatus.call);
 			}
+		} else if (opponentBet == 0) {
+			if (new Random(seed).nextInt() % 2 == 0) {
+				strategy.setHandStatus(HandStatus.call);
+			} else {
+				strategy.setHandStatus(HandStatus.raise);
+				double amount = Math.abs(new Random(seed).nextInt() % 50);
+				if (amount > account.getBalance()) {
+					amount = account.getBalance();
+				}
+				strategy.setBet(amount + 5);
+			}
 		} else {
 			if (category.ordinal() > 1) {
-				strategy.setBet(5);
+				int amount = Math.abs(new Random(seed).nextInt() % 50);
+				strategy.setBet(amount + 5);
 				strategy.setHandStatus(HandStatus.raise);
 			} else if (hand.getCards().size() == 2) {
 				strategy.setHandStatus(HandStatus.call);
