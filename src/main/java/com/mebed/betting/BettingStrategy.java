@@ -17,6 +17,7 @@ public class BettingStrategy {
 				strategy.setHandStatus(HandStatus.fold);
 			} else {
 				strategy.setHandStatus(HandStatus.call);
+				strategy.setBet(opponentBet);
 			}
 		} else if (opponentBet == 0) {
 			if (new Random(seed).nextInt() % 2 == 0) {
@@ -31,6 +32,7 @@ public class BettingStrategy {
 				strategy.setBet(amount + 5);
 			} else {
 				strategy.setHandStatus(HandStatus.call);
+				strategy.setBet(opponentBet);
 			}
 		} else {
 			if (category.ordinal() > 1 && handStatus != HandStatus.call) {
@@ -39,14 +41,17 @@ public class BettingStrategy {
 				strategy.setHandStatus(HandStatus.raise);
 			} else if (hand.getCards().size() == 2) {
 				strategy.setHandStatus(HandStatus.call);
+				strategy.setBet(opponentBet);
 			} else if (hand.getCards().size()  > 6 && handStatus == HandStatus.raise) {
 				if (new Random(seed).nextInt() % 2 == 0) {
 					strategy.setHandStatus(HandStatus.fold);
 				} else {
 					strategy.setHandStatus(HandStatus.call);
+					strategy.setBet(opponentBet);
 				}
 			} else {
 				strategy.setHandStatus(HandStatus.call);
+				strategy.setBet(opponentBet);
 			}
 		}
 		return strategy;
