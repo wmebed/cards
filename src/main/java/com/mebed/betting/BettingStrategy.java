@@ -20,9 +20,9 @@ public class BettingStrategy {
 				setCallBet(account, strategy, opponentBet);
 			}
 		} else if (opponentBet == 0) {
-			if (new Random(seed).nextInt() % 2 == 0) {
+			if (new Random(seed).nextInt() % 3 > 1) {
 				strategy.setHandStatus(HandStatus.call);
-				setCallBet(account, strategy, opponentBet);
+				// Don't set bet when opponenet is calling
 			} else if (handStatus != HandStatus.call) {
 				strategy.setHandStatus(HandStatus.raise);
 				setRaiseBet(account, strategy, seed);
@@ -35,16 +35,19 @@ public class BettingStrategy {
 				int amount = Math.abs(new Random(seed).nextInt() % 50);
 				setRaiseBet(account, strategy, seed);
 				strategy.setHandStatus(HandStatus.raise);
-			} else if (hand.getCards().size() == 2) {
+			} else if (hand.getCards().size() == 2 && handStatus != HandStatus.call) {
 				strategy.setHandStatus(HandStatus.call);
 				setCallBet(account, strategy, opponentBet);
-			} else if (hand.getCards().size()  > 6 && handStatus == HandStatus.raise) {
+			} else if (hand.getCards().size()  > 5 && handStatus == HandStatus.raise) {
 				if (new Random(seed).nextInt() % 2 == 0) {
 					strategy.setHandStatus(HandStatus.fold);
 				} else {
 					strategy.setHandStatus(HandStatus.call);
 					setCallBet(account, strategy, opponentBet);
 				}
+			} else if (handStatus == HandStatus.call) {
+				strategy.setHandStatus(HandStatus.call);
+				// Don't set bet when opponenet calls
 			} else {
 				strategy.setHandStatus(HandStatus.call);
 				setCallBet(account, strategy, opponentBet);
