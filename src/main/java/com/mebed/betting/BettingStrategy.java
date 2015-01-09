@@ -13,14 +13,14 @@ public class BettingStrategy {
 		long seed = System.nanoTime();
 		HandCategory category = PokerGame.getCategory(hand);
 		if (opponentBet > 9 && handStatus != HandStatus.call) {
-			if (new Random(seed).nextInt() % 2 == 0) {
+			if (new Random(seed).nextInt() % 2 == 0 && pot.balance < 20) {
 				strategy.setHandStatus(HandStatus.fold);
 			} else {
 				strategy.setHandStatus(HandStatus.call);
 				setCallBet(account, strategy, opponentBet);
 			}
 		} else if (opponentBet == 0) {
-			if (new Random(seed).nextInt() % 3 > 1) {
+			if (new Random(seed).nextInt() % 3 > 2) {
 				strategy.setHandStatus(HandStatus.call);
 				// Don't set bet when opponenet is calling
 			} else if (handStatus != HandStatus.call) {
@@ -39,7 +39,7 @@ public class BettingStrategy {
 				strategy.setHandStatus(HandStatus.call);
 				setCallBet(account, strategy, opponentBet);
 			} else if (hand.getCards().size()  > 5 && handStatus == HandStatus.raise) {
-				if (new Random(seed).nextInt() % 2 == 0) {
+				if (new Random(seed).nextInt() % 2 == 00 && pot.balance < 20) {
 					strategy.setHandStatus(HandStatus.fold);
 				} else {
 					strategy.setHandStatus(HandStatus.call);
@@ -58,7 +58,7 @@ public class BettingStrategy {
 
 	private static void setRaiseBet(Account account, Account playerAccount, Strategy strategy,
 			long seed) {
-		double amount = Math.abs(new Random(seed).nextInt() % 50);
+		double amount = Math.abs(new Random(seed).nextInt() % 25);
 		if (amount > playerAccount.getBalance()) {
 			amount = playerAccount.getBalance();
 		} 
